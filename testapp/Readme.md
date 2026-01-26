@@ -107,6 +107,7 @@ kubectl set image deployment/node-app node-app=<docker-username>/node-app:2.0
 ----------
 
 🧹 Cleanup (Optional)
-
+```bash
 kubectl delete deployment node-app
 kubectl delete service node-app-service
+```
