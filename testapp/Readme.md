@@ -24,14 +24,14 @@ node-app/
 2.build the docker image. 
 
 ```bash
-   docker build -t < image-name > .
+docker build -t < image-name > .
 ```
 ----------
 
 **📤 Step 2: Push Image to Docker Hub**
 
 ```bash
-    docker push username/< imgae-name > : version
+docker push username/< imgae-name > : version
 ```
 
 ----------
