@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# Unique key of the Deployment instance
+  name: my-node-app
+spec:
+# 2 pods should exist at all times.
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+      # Apply this labels to pods and default
+      # the Deployment label selector to this value
+        app: node-app
+    spec:
+      containers:
+      - name: node-app
+      # Run this image
+        image: rupeshs11/node-demo:02 # name of the image we want to run  # note: the image must be present at docker hub so after building the image push the image to the docker hub
+        ports:
+        - containerPort: 80
