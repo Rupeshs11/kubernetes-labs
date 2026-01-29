@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# Unique key of the Deployment instance
+  name: node-file-app
+spec:
+# 3 pods should exist at all times.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-file-app
+  template:
+    metadata:
+      labels:
+      # Apply this labels to pods and default
+      # the Deployment label selector to this value
+        app: node-file-app
+    spec:
+      containers:
+      - name: node-file-app
+      # Run this image
+        image: rupeshs11/praticals:04
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: myvolume
+          mountPath: /app/data
+      volumes:
+        - name: myvolume
+          # hostPath:
+          #   path: /mydata
+          #   type: FileOrCreate
+          persistentVolumeClaim:
+            claimName: email-pvc
