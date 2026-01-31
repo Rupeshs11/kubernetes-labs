@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-daemonsets
+  labels:
+    app: nginx
+  namespace: nginx
+
+spec:
+# here not need to define the replica beacuse of it property of one replica in each node
+  selector:
+    matchLabels:
+      app: nginx
+        
+#it is basically pod.yml
+
+  template: 
+    metadata:
+      name: nginx-daemon-pod
+      labels:
+        app: nginx
+
+    spec: 
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+          - containerPort: 80
+
+

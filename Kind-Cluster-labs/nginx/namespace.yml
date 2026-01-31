@@ -1,0 +1,5 @@
+kind: Namespace #It is a key-value pair
+apiVersion: v1 # key-value pair
+metadata:
+  name: nginx
+
