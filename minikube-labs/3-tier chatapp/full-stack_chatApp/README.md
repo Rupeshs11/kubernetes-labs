@@ -198,5 +198,4 @@ k8s/
 ├── frontend-service.yml
 └── ingress.yml
 ```
-123456
 
