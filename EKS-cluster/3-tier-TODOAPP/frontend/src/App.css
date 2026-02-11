@@ -1,0 +1,401 @@
+/* === One Piece Theme — App Styles === */
+
+/* ===== LAYOUT ===== */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* ===== HEADER ===== */
+.app-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-bottom: 3px solid #d4a843;
+  padding: 20px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(212, 168, 67, 0.03) 40px,
+      rgba(212, 168, 67, 0.03) 41px
+    );
+  pointer-events: none;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-icon {
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(212, 168, 67, 0.4));
+}
+
+.app-header h1 {
+  font-family: 'Pirata One', cursive;
+  font-size: 2.8rem;
+  color: #ffd700;
+  text-shadow:
+    2px 2px 0 #8b6914,
+    0 0 20px rgba(255, 215, 0, 0.3);
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.header-subtitle {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(232, 213, 183, 0.6);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* ===== TODO CONTAINER (Parchment Card) ===== */
+.todo-container {
+  width: 100%;
+  max-width: 650px;
+  padding: 32px;
+  background: linear-gradient(145deg, #1e2a3a 0%, #162032 50%, #1a2540 100%);
+  border: 2px solid rgba(212, 168, 67, 0.3);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(212, 168, 67, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.todo-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #d4a843, #ffd700, #d4a843, transparent);
+}
+
+.todo-container::after {
+  content: '☠';
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 1.4rem;
+  opacity: 0.1;
+}
+
+/* ===== TASK FORM ===== */
+.task-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.input-wrapper {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  z-index: 2;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.task-input {
+  flex-grow: 1;
+}
+
+/* Override MUI TextField */
+.task-input .MuiOutlinedInput-root {
+  background: rgba(10, 22, 40, 0.6);
+  border-radius: 10px;
+  color: #e8d5b7;
+  font-family: 'Nunito', sans-serif;
+  padding-left: 38px;
+  transition: all 0.3s ease;
+}
+
+.task-input .MuiOutlinedInput-root fieldset {
+  border-color: rgba(212, 168, 67, 0.25);
+  border-width: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.task-input .MuiOutlinedInput-root:hover fieldset {
+  border-color: rgba(212, 168, 67, 0.5);
+}
+
+.task-input .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
+}
+
+.task-input .MuiOutlinedInput-input {
+  color: #e8d5b7;
+  font-weight: 600;
+}
+
+.task-input .MuiOutlinedInput-input::placeholder {
+  color: rgba(232, 213, 183, 0.4);
+  font-style: italic;
+}
+
+/* ===== ADD BUTTON ===== */
+.add-task-btn {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #d4a843, #8b6914) !important;
+  color: #1a1a2e !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 8px 20px !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 1px;
+  text-transform: uppercase !important;
+  box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-task-btn:hover {
+  background: linear-gradient(135deg, #ffd700, #d4a843) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4) !important;
+}
+
+.add-task-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== TASKS LIST ===== */
+.tasks-list {
+  margin-top: 8px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(232, 213, 183, 0.4);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.empty-state p {
+  font-family: 'Pirata One', cursive;
+  font-size: 1.3rem;
+  color: rgba(232, 213, 183, 0.35);
+}
+
+/* ===== TASK ITEM ===== */
+.task-item {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 14px 16px;
+  background: rgba(10, 22, 40, 0.5) !important;
+  border: 1px solid rgba(212, 168, 67, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.4s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.task-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #d4a843, #8b6914);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.task-item:hover {
+  border-color: rgba(212, 168, 67, 0.3);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.task-item:hover::before {
+  opacity: 1;
+}
+
+.task-item.completed-item {
+  opacity: 0.55;
+  border-color: rgba(76, 175, 80, 0.2);
+}
+
+.task-item.completed-item::before {
+  background: linear-gradient(180deg, #4caf50, #2e7d32);
+}
+
+/* ===== CHECKBOX ===== */
+.task-item .MuiCheckbox-root {
+  color: rgba(212, 168, 67, 0.5) !important;
+  transition: all 0.3s ease;
+}
+
+.task-item .MuiCheckbox-colorPrimary.Mui-checked {
+  color: #4caf50 !important;
+}
+
+/* ===== TASK TEXT ===== */
+.task-text {
+  flex-grow: 1;
+  margin: 0 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e8d5b7;
+  transition: all 0.3s ease;
+  word-break: break-word;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  text-decoration-color: rgba(76, 175, 80, 0.6);
+  text-decoration-thickness: 2px;
+  color: rgba(232, 213, 183, 0.4);
+}
+
+/* ===== DELETE BUTTON ===== */
+.delete-task-btn {
+  flex-shrink: 0;
+  background: rgba(220, 20, 60, 0.12) !important;
+  color: #dc3545 !important;
+  border: 1px solid rgba(220, 20, 60, 0.2) !important;
+  border-radius: 8px !important;
+  min-width: 38px !important;
+  width: 38px !important;
+  height: 38px !important;
+  padding: 0 !important;
+  font-size: 1.1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.delete-task-btn:hover {
+  background: rgba(220, 20, 60, 0.25) !important;
+  border-color: rgba(220, 20, 60, 0.5) !important;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(220, 20, 60, 0.2) !important;
+}
+
+/* ===== FOOTER ===== */
+.app-footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid rgba(212, 168, 67, 0.1);
+}
+
+.footer-quote {
+  font-family: 'Pirata One', cursive;
+  font-size: 1.1rem;
+  color: rgba(212, 168, 67, 0.35);
+  letter-spacing: 1px;
+}
+
+.footer-credit {
+  font-size: 0.75rem;
+  color: rgba(232, 213, 183, 0.2);
+  margin-top: 6px;
+}
+
+/* ===== TASK COUNTER ===== */
+.task-counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.15);
+}
+
+.counter-label {
+  font-family: 'Pirata One', cursive;
+  font-size: 1.15rem;
+  color: rgba(212, 168, 67, 0.7);
+}
+
+.counter-badge {
+  background: linear-gradient(135deg, rgba(212, 168, 67, 0.2), rgba(139, 105, 20, 0.2));
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  border-radius: 20px;
+  padding: 3px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #d4a843;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .header-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .todo-container {
+    padding: 20px 16px;
+    margin: 0 8px;
+  }
+
+  .task-form {
+    flex-direction: column;
+  }
+
+  .add-task-btn {
+    width: 100%;
+  }
+
+  .main-content {
+    padding: 20px 12px;
+  }
+}
