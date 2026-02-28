@@ -1,0 +1,14 @@
+# provisions a cloud load balancer (AWS/GCP/Azure)
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-lb
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: my-app
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP

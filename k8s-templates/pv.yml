@@ -1,0 +1,18 @@
+# cluster-level storage resource
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  hostPath:
+    path: /mnt/data
+  # for AWS EBS
+  # awsElasticBlockStore:
+  #   volumeID: vol-0abcdef1234567890
+  #   fsType: ext4

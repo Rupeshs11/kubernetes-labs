@@ -1,0 +1,19 @@
+# non-sensitive config as key-value pairs
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+  namespace: default
+data:
+  APP_ENV: "production"
+  APP_PORT: "3000"
+  DB_HOST: "my-db-svc"
+  # can also store entire config files
+  nginx.conf: |
+    server {
+      listen 80;
+      server_name localhost;
+      location / {
+        proxy_pass http://my-app:3000;
+      }
+    }

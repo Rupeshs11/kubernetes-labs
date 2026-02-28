@@ -1,0 +1,16 @@
+# caps total resource usage in a namespace
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: my-quota
+  namespace: default
+spec:
+  hard:
+    pods: "20"
+    requests.cpu: "4"
+    requests.memory: "8Gi"
+    limits.cpu: "8"
+    limits.memory: "16Gi"
+    persistentvolumeclaims: "10"
+    services: "10"
+    services.loadbalancers: "2"

@@ -1,0 +1,13 @@
+# no cluster IP — gives direct pod DNS, used with StatefulSets
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-db
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    app: my-db
+  ports:
+    - port: 27017
+      targetPort: 27017

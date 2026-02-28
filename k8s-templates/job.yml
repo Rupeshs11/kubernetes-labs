@@ -1,0 +1,22 @@
+# runs a task to completion, then stops
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+  namespace: default
+spec:
+  completions: 1
+  parallelism: 1
+  backoffLimit: 3
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: my-job
+          image: busybox:latest
+          command: ["sh", "-c", "echo running job && sleep 10 && echo done"]
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"

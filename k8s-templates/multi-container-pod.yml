@@ -1,0 +1,33 @@
+# init container runs first, then app + sidecar run together
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+  labels:
+    app: my-app
+spec:
+  initContainers:
+    - name: init-setup
+      image: busybox:latest
+      command: ["sh", "-c", "echo initializing && sleep 5"]
+
+  containers:
+    - name: app
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: shared-data
+          mountPath: /usr/share/nginx/html
+
+    - name: sidecar-logger
+      image: busybox:latest
+      command:
+        ["sh", "-c", "while true; do echo sidecar running; sleep 30; done"]
+      volumeMounts:
+        - name: shared-data
+          mountPath: /var/log/app
+
+  volumes:
+    - name: shared-data
+      emptyDir: {}

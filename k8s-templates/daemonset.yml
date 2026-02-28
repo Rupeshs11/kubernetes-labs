@@ -1,0 +1,37 @@
+# runs one pod on every node — useful for logging, monitoring
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: my-agent
+  namespace: default
+  labels:
+    app: my-agent
+spec:
+  selector:
+    matchLabels:
+      app: my-agent
+  template:
+    metadata:
+      labels:
+        app: my-agent
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          effect: NoSchedule
+      containers:
+        - name: my-agent
+          image: fluentd:latest
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
+          volumeMounts:
+            - name: var-log
+              mountPath: /var/log
+      volumes:
+        - name: var-log
+          hostPath:
+            path: /var/log

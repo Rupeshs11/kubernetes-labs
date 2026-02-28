@@ -1,0 +1,24 @@
+# scheduled job — cron format: min hour day month weekday
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: my-cronjob
+  namespace: default
+spec:
+  schedule: "0 */6 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: my-cronjob
+              image: busybox:latest
+              command: ["sh", "-c", "echo scheduled task running && date"]
+              resources:
+                requests:
+                  cpu: "50m"
+                  memory: "32Mi"

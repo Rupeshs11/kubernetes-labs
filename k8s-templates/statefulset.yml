@@ -1,0 +1,41 @@
+# for stateful apps like databases that need stable IDs and persistent storage
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-db
+  namespace: default
+spec:
+  serviceName: my-db
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-db
+  template:
+    metadata:
+      labels:
+        app: my-db
+    spec:
+      containers:
+        - name: my-db
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: data
+              mountPath: /data/db
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+  # each pod gets its own volume
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
